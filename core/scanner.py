@@ -4,6 +4,9 @@ import subprocess
 def scan_networks():
     try:
         result = subprocess.run(['iwlist', 'wlan0', 'scan'], capture_output=True, text=True)
+        if result.returncode != 0:
+            return []
+
         networks = []
         for line in result.stdout.split('\n'):
             if 'Cell' in line:
@@ -25,4 +28,5 @@ def scan_networks():
                 networks[-1]['akm'] = 'WPA2'
         return networks
     except Exception as e:
-        return str(e)
+        print(f"Error scanning networks: {e}")
+        return []
