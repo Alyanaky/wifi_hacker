@@ -1,14 +1,10 @@
-import pywifi
-from pywifi import const
+# core/auto_connect.py
+import subprocess
 from core.dictionary_attack import dictionary_attack
 from core.brute_force_attack import brute_force_attack
 from core.wps_attack import wps_attack
 
 def auto_connect(networks):
-    wifi = pywifi.PyWiFi()
-    iface = wifi.interfaces()[0]
-    iface.disconnect()
-
     # Сортируем сети по сигналу
     networks.sort(key=lambda x: x['signal'], reverse=True)
 

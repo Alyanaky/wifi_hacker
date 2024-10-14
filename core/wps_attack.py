@@ -1,3 +1,4 @@
+# core/wps_attack.py
 import subprocess
 
 def wps_attack(bssid, pin):
